@@ -8,6 +8,7 @@ class CreateRestaurants < ActiveRecord::Migration[5.2]
       t.datetime :closing_time
       t.integer :revenue
       t.integer :rating
+      t.string :cuisine
 
       t.timestamps
     end
