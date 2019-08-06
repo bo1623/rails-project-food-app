@@ -1,0 +1,6 @@
+
+<%= form_tag login_path, method: :post do %>
+  <p>Username: <%= text_field_tag "username" %></p>
+  <p>Password: <%= text_field_tag "password" %></p>
+  <%= submit_tag "Log In" %>
+<%end%>
