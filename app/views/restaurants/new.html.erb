@@ -11,6 +11,9 @@
   <%= f.label "Location"%>
   <%= f.collection_select(:location_id, Location.all, :id, :name) %><br>
 
+  <br>
+
+  <p>Meals:</p>
   <%= f.fields_for :meals do |meals_attributes|%>
     <%= meals_attributes.label :name %>
     <%= meals_attributes.text_field :name %><br>
@@ -18,7 +21,6 @@
     <%= meals_attributes.label :price %>
     <%= meals_attributes.number_field :price %><br>
 
-    <%= meals_attributes.hidden_field :restaurant_id%>
   <%end%>
 
   <%= f.submit %><br>

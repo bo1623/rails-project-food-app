@@ -1,0 +1,9 @@
+
+<h2><%= @restaurant.name %></h2>
+<%= @restaurant.location.name %>
+<div>Operating Hours: <%=@restaurant.opening_time%> - <%=@restaurant.closing_time%></div>
+
+<%@meals.each do |meal|%>
+  <%= meal.name %><br>
+  <%= meal.price%><br>
+<%end%>

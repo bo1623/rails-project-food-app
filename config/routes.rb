@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :dishes
   root 'welcome#home'
   resources :corporations
   resources :locations
