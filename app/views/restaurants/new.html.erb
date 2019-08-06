@@ -1,0 +1,25 @@
+<%= form_for @restaurant do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+
+  <%= f.label :opening_time %>
+  <%= f.time_select :opening_time %><br>
+
+  <%= f.label :closing_time %>
+  <%= f.time_select :closing_time %><br>
+
+  <%= f.label "Location"%>
+  <%= f.collection_select(:location_id, Location.all, :id, :name) %><br>
+
+  <%= f.fields_for :meals do |meals_attributes|%>
+    <%= meals_attributes.label :name %>
+    <%= meals_attributes.text_field :name %><br>
+
+    <%= meals_attributes.label :price %>
+    <%= meals_attributes.number_field :price %><br>
+
+    <%= meals_attributes.hidden_field :restaurant_id%>
+  <%end%>
+
+  <%= f.submit %><br>
+<%end%>
