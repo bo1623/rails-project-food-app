@@ -9,6 +9,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant=Restaurant.find(params[:id])
+    @dishes = @restaurant.dishes
   end
 
   def new
@@ -18,7 +19,6 @@ class RestaurantsController < ApplicationController
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
-    byebug
     if @restaurant.save
       redirect_to restaurant_path(@restaurant)
     else

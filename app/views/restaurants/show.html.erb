@@ -1,11 +1,13 @@
 
 <h2><%= @restaurant.name %></h2>
-<%= @restaurant.location.name %><br>
-<%= @restaurant.cuisine %><br>
+<div>Location: <%= @restaurant.location.name %></div><br>
+<div>Cuisine: <%= @restaurant.cuisine %></div><br>
 
-<div>Operating Hours: <%=@restaurant.opening_time%> - <%=@restaurant.closing_time%></div>
+<div>Operating Hours: <%=@restaurant.opening_time.strftime("%I:%M %p")%> - <%=@restaurant.closing_time.strftime("%I:%M %p")%></div><br>
 
+<h3>Menu</h3>
+<ul>
 <%@dishes.each do |dish|%>
-  <%= dish.name %><br>
-  <%= dish.price%><br>
+  <li><%= dish.name %>: <%= dish.price%></li>
 <%end%>
+</ul>
