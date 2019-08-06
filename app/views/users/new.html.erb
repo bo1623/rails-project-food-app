@@ -1,0 +1,19 @@
+
+<h1>Welcome to Food App!</h1>
+
+<%= form_for @user do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %><br>
+
+  <%= f.label :password %>
+  <%= f.text_field :password %><br>
+
+  <%= f.label :admin %>
+  <%= f.check_box :admin %><br>
+
+  <%= f.label :restaurant_manager %>
+  <%= f.check_box :restaurant_manager %><br>
+
+  <%= f.submit "Sign Up" %>
+
+<%end%>

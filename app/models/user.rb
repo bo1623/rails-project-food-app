@@ -5,4 +5,6 @@ class User < ApplicationRecord
   has_many :corporations, through: :restaurants
   has_many :locations, through: :restaurants
 
+  validates :username, presence: true
+
 end
