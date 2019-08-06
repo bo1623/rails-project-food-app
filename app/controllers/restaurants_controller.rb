@@ -13,7 +13,7 @@ class RestaurantsController < ApplicationController
 
   def new
     @restaurant = Restaurant.new
-    @restaurant.meals.build
+    @restaurant.dishes.build
   end
 
   def create
@@ -29,7 +29,7 @@ class RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :corporation_id,:location_id,:opening_time,:closing_time,:revenue,:rating, meal_ids:[], meals_attributes: [:name,:price,:restaurant_id,:user_id,:rating])
+    params.require(:restaurant).permit(:name, :cuisine,:location_id,:opening_time,:closing_time,:revenue,:rating, dish_ids:[], dishes_attributes: [:name,:price])
   end
 
 
