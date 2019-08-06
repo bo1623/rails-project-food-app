@@ -17,14 +17,18 @@
   <br>
 
   <p>Meals:</p>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+    </tr>
   <%= f.fields_for :dishes do |dishes_attributes|%>
-    <%= dishes_attributes.label :name %>
-    <%= dishes_attributes.text_field :name %><br>
-
-    <%= dishes_attributes.label :price %>
-    <%= dishes_attributes.number_field :price %><br>
-
+    <tr>
+      <td><%= dishes_attributes.text_field :name %></td>
+      <td><%= dishes_attributes.number_field :price %></td>
+    </tr>
   <%end%>
+  </table>
 
   <%= f.submit %><br>
 <%end%>

@@ -14,7 +14,9 @@ class RestaurantsController < ApplicationController
 
   def new
     @restaurant = Restaurant.new
-    @restaurant.dishes.build
+    5.times do
+      @restaurant.dishes.build
+    end
   end
 
   def create
