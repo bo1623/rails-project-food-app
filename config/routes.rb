@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  root 'welcome#home'
   resources :corporations
   resources :locations
   resources :restaurants
   resources :meals
   resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/login' => 'sessions#new'
+  get '/logout' => 'sessions#destroy'
+
 end
