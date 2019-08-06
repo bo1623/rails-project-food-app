@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :username
       t.boolean :admin
       t.boolean :restaurant_manager
-      t.sring :password_digest
+      t.string :password_digest
       t.timestamps
     end
   end
