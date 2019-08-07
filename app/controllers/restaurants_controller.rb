@@ -37,8 +37,7 @@ class RestaurantsController < ApplicationController
 
   def update
     @restaurant=Restaurant.find(params[:id])
-    @restaurant.update(restaurant_params) #model will not be destroyed until parent is saved
-    # @restaurant.update(restaurant_params)
+    @restaurant.update(restaurant_params)
     redirect_to restaurant_path(@restaurant)
   end
 

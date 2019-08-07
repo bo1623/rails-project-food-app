@@ -1,6 +1,25 @@
 
 <h1> Welcome! </h1>
 
+<h3> Top Picks </h3>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Cuisine</th>
+    <th>Location</th>
+    <th>Rating</th>
+  </tr>
+<% @restaurants.each do |restaurant| %>
+  <tr>
+    <td><%= link_to restaurant.name, restaurant_path(restaurant) %></td>
+    <td><%= restaurant.cuisine.name %></td>
+    <td><%= restaurant.location.name %></td>
+    <td><%= restaurant.rating.nil? ? "Not Rated Yet" : restaurant.rating %></td>
+  </tr>
+<%end%>
+</table>
+<br>
+
 <% if session[:user_id] %>
   <a class="navbar-brand" href="<%= logout_path%>">Log Out</a><br>
 <%else%>
