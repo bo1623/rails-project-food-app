@@ -21,5 +21,10 @@ class Meal < ApplicationRecord
     dish_price(dish_name)*dish_count(dish_name)
   end
 
+  def dish_names
+    dishes=self.dishes
+    dishes.map{|dish| dish.name}.uniq
+  end
+
 
 end

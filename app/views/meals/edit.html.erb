@@ -1,0 +1,13 @@
+
+<p>How would you rate your meal?</p>
+
+<%= form_for @meal do |f| %>
+  <%@meal.dish_names.each do |dish_name|%>
+    <%= f.fields_for :dishes do |dishes_attributes|%>
+      <%=dish_name%> <%= dishes_attributes.number_field :dish_rating, {min: 0, max: 5} %><br>
+      <%=dishes_attributes.hidden_field dish_name%>
+    <%end%>
+  <%end%>
+
+  <%= f.submit %>
+<%end%>

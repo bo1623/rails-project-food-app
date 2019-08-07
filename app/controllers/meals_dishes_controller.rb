@@ -2,7 +2,7 @@ class MealsDishesController < ApplicationController
   before_action :current_user
 
   def create
-    if params[:dish_quantities].uniq == ['0']
+    if params[:dish_quantities].uniq == ['0'] #condition where all dish_quantites are 0
       redirect_back(fallback_location: root_path) #redirects back to previous page (restaurant show page)
     else
       @meal=Meal.new
