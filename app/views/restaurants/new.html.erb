@@ -2,8 +2,8 @@
   <%= f.label :name %>
   <%= f.text_field :name %><br>
 
-  <%= f.label :cuisine %>
-  <%= f.text_field :cuisine %><br>
+  <%= f.label "Cuisine" %>
+  <%= f.collection_select(:cuisine_id, Cuisine.all, :id, :name)%><br>
 
   <%= f.label :opening_time %>
   <%= f.time_select :opening_time %><br>

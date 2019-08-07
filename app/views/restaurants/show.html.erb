@@ -1,7 +1,7 @@
 
 <h2><%= @restaurant.name %></h2>
 <div>Location: <%= @restaurant.location.name %></div><br>
-<div>Cuisine: <%= @restaurant.cuisine %></div><br>
+<div>Cuisine: <%= @restaurant.cuisine.name %></div><br>
 
 <div>Operating Hours: <%=@restaurant.opening_time.strftime("%I:%M %p")%> - <%=@restaurant.closing_time.strftime("%I:%M %p")%></div><br>
 
