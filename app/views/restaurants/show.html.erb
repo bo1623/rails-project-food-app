@@ -17,8 +17,8 @@
     <tr>
       <td><%=dish.name %></td>
       <td><%=dish.price%></td>
-      <td><%=select_tag "quantity",options_for_select((0..10).step(1))%></td>
-      <%= hidden_field_tag "dish_id", dish.id%>
+      <td><%=select_tag "dish_quantities[]",options_for_select((0..10).step(1))%></td>
+      <%= hidden_field_tag "dish_ids[]", dish.id%>
     </tr>
   <%end%>
   </table>
