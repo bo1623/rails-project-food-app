@@ -21,3 +21,8 @@ Cuisine.create(name: "Coffee")
 Cuisine.create(name: "Japanese")
 Cuisine.create(name: "Thai")
 Cuisine.create(name: "Korean")
+
+
+User.create(username: "Jack", password: "password")
+User.create(username: "HC Manager", password: "password", restaurant_manager: true)
+User.create(username: "App Admin", password: "password", admin: true)
