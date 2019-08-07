@@ -5,7 +5,7 @@
 
 <div>Operating Hours: <%=@restaurant.opening_time.strftime("%I:%M %p")%> - <%=@restaurant.closing_time.strftime("%I:%M %p")%></div><br>
 
-<%= form_tag '/meals', method: :post do %>
+<%= form_tag '/meals_dishes', method: :post do %>
   <h3>Menu</h3>
   <table>
     <tr>
@@ -18,7 +18,7 @@
       <td><%=dish.name %></td>
       <td><%=dish.price%></td>
       <td><%=select_tag "quantity",options_for_select((0..10).step(1))%></td>
-      <%= hidden_field_tag "dish_ids[]", dish.id%>
+      <%= hidden_field_tag "dish_id", dish.id%>
     </tr>
   <%end%>
   </table>

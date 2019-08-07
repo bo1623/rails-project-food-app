@@ -7,7 +7,11 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: params[:username])
     if !@user.nil? &&  User.exists?(@user.id) && @user.authenticate(params[:password])
       session[:user_id]=@user.id
-      redirect_to restaurants_path
+      if @user.restaurant_manager
+        redirect_to new_restaurant_path
+      else
+        redirect_to restaurants_path
+      end
     else
       render :new #rendering the log in page again after unsuccessful attempt
     end

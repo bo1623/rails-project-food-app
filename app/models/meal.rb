@@ -1,4 +1,5 @@
 class Meal < ApplicationRecord
   belongs_to :user
-  belongs_to :dish
+  has_many :meals_dishes
+  has_many :dishes, through: :meals_dishes
 end

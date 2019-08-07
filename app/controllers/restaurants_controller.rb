@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  before_action :require_login, :require_manager
+  before_action :require_login, :require_manager, :current_user
   skip_before_action :require_manager, only: [:index, :show]
 
   def index #build in filter later on
@@ -15,7 +15,6 @@ class RestaurantsController < ApplicationController
   end
 
   def new
-    @user = User.find(session[:user_id])
     @restaurant = Restaurant.new
     5.times do
       @restaurant.dishes.build
@@ -23,7 +22,6 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    @user = User.find(session[:user_id])
     @restaurant = Restaurant.new(restaurant_params)
     @user.restaurant = @restaurant
     @user.save #need to find out why the user's restaurant_id doesnt update
@@ -53,6 +51,12 @@ class RestaurantsController < ApplicationController
 
   def require_manager
     return head(:forbidden) unless User.find(session[:user_id]).restaurant_manager
+  end
+
+  def current_user
+    if session[:user_id]
+      @user = User.find(session[:user_id])
+    end
   end
 
 end
