@@ -14,16 +14,18 @@
     <% @dish_names.each do |dish_name|%>
       <tr>
         <td><%=dish_name%></td>
-        <td><%=@dishes.where(name:dish_name)[0].price%></td>
-        <td><%=@dishes.where(name:dish_name).count%></td>
-        <td><%=@dishes.where(name:dish_name)[0].price*@dishes.where(name:dish_name).count%></td>
+        <td><%=@meal.dish_price(dish_name)%></td>
+        <td><%=@meal.dish_count(dish_name)%></td>
+        <td><%=@meal.dishes_cost(dish_name)%></td>
       </tr>
     <%end%>
   </tbody>
   <tfoot>
     <tr>
-      <th>Total</th>
+      <th  colspan="3">Total</th>
       <td><%=@meal.total%></td>
     </tr>
   </tfoot>
 </table>
+
+<%= button_to "Proceed", edit_meal_path, method: 'get'%>

@@ -14,7 +14,7 @@
     <td><%= link_to restaurant.name, restaurant_path(restaurant) %></td>
     <td><%= restaurant.cuisine.name %></td>
     <td><%= restaurant.location.name %></td>
-    <td><%= restaurant.rating.nil? ? "Not Rated Yet" : restaurant.rating %></td>
+    <td><%= restaurant.restaurant_rating.nil? ? "Not Rated Yet" : restaurant.restaurant_rating %></td>
   </tr>
 <%end%>
 </table>
