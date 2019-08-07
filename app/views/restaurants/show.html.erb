@@ -5,19 +5,25 @@
 
 <div>Operating Hours: <%=@restaurant.opening_time.strftime("%I:%M %p")%> - <%=@restaurant.closing_time.strftime("%I:%M %p")%></div><br>
 
-<h3>Menu</h3>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Price</th>
-  </tr>
-<%@dishes.each do |dish|%>
-  <tr>
-    <td><%=dish.name %></td>
-    <td><%=dish.price%></td>
-  </tr>
+<%= form_tag '/meals', method: :post do %>
+  <h3>Menu</h3>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+  <%@dishes.each do |dish|%>
+    <tr>
+      <td><%=dish.name %></td>
+      <td><%=dish.price%></td>
+      <td><%=select_tag "quantity",options_for_select((0..10).step(1))%></td>
+      <%= hidden_field_tag "dish_ids[]", dish.id%>
+    </tr>
+  <%end%>
+  </table>
+  <%= submit_tag "Place your order" %>
 <%end%>
-</table>
 
 
 <% if restaurant_manager? && User.find(session[:user_id]).restaurant == @restaurant %>
