@@ -1,0 +1,38 @@
+
+<%= form_for @restaurant do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+
+  <%= f.label "Cuisine" %>
+  <%= f.collection_select(:cuisine_id, Cuisine.all, :id, :name)%><br>
+
+  <%= f.label :opening_time %>
+  <%= f.time_select :opening_time %><br>
+
+  <%= f.label :closing_time %>
+  <%= f.time_select :closing_time %><br>
+
+  <%= f.label "Location"%>
+  <%= f.collection_select(:location_id, Location.all, :id, :name) %><br>
+
+  <br>
+
+  <p>Meals:</p>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Delete</th>
+    </tr>
+  <%= f.fields_for :dishes do |dishes_attributes|%>
+    <%= dishes_attributes.hidden_field :id%>
+    <tr>
+      <td><%= dishes_attributes.text_field :name %></td>
+      <td><%= dishes_attributes.number_field :price %></td>
+      <td><%= dishes_attributes.check_box :_destroy %>
+    </tr>
+  <%end%>
+  </table>
+
+  <%= f.submit %><br>
+<%end%>

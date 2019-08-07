@@ -30,10 +30,22 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def edit
+    @restaurant=Restaurant.find(params[:id])
+    @restaurant.dishes.build
+  end
+
+  def update
+    @restaurant=Restaurant.find(params[:id])
+    @restaurant.update(restaurant_params) #model will not be destroyed until parent is saved
+    # @restaurant.update(restaurant_params)
+    redirect_to restaurant_path(@restaurant)
+  end
+
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :cuisine,:location_id, :cuisine_id, :opening_time,:closing_time,:revenue,:rating, dish_ids:[], dishes_attributes: [:name,:price])
+    params.require(:restaurant).permit(:name, :cuisine,:location_id, :cuisine_id, :opening_time,:closing_time,:revenue,:rating, dish_ids:[], dishes_attributes: [:name,:price,:_destroy, :id])
   end
 
   def require_manager
