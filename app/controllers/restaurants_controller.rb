@@ -15,6 +15,7 @@ class RestaurantsController < ApplicationController
   end
 
   def new
+    @user = User.find(session[:user_id])
     @restaurant = Restaurant.new
     5.times do
       @restaurant.dishes.build
@@ -22,6 +23,7 @@ class RestaurantsController < ApplicationController
   end
 
   def create
+    raise params.inspect
     @restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
       redirect_to restaurant_path(@restaurant)
@@ -44,7 +46,7 @@ class RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :cuisine,:location_id, :cuisine_id, :opening_time,:closing_time,:revenue,:rating, dish_ids:[], dishes_attributes: [:name,:price,:_destroy, :id])
+    params.require(:restaurant).permit(:name, :cuisine,:user_id, :location_id, :cuisine_id, :opening_time,:closing_time,:revenue,:rating, dish_ids:[], dishes_attributes: [:name,:price,:_destroy, :id])
   end
 
   def require_manager

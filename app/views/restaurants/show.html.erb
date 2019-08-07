@@ -6,12 +6,21 @@
 <div>Operating Hours: <%=@restaurant.opening_time.strftime("%I:%M %p")%> - <%=@restaurant.closing_time.strftime("%I:%M %p")%></div><br>
 
 <h3>Menu</h3>
-<ul>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+  </tr>
 <%@dishes.each do |dish|%>
-  <li><%= dish.name %>: <%= dish.price%></li>
+  <tr>
+    <td><%=dish.name %></td>
+    <td><%=dish.price%></td>
+  </tr>
 <%end%>
-</ul>
+</table>
 
-<% if restaurant_manager? %>
+<%byebug%>
+
+<% if restaurant_manager? && User.find(session[:user_id]).restaurant == @restaurant %>
   <%=render partial: "edit", locals: {restaurant: @restaurant} %>
 <%end%>
