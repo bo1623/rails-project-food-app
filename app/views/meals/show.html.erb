@@ -28,4 +28,12 @@
   </tfoot>
 </table>
 
-<%= button_to "Proceed", edit_meal_path, method: 'get'%>
+<p>
+  Changed Your Mind?
+  <%= button_to "Cancel Order",
+  meal_path(@meal),
+  method: :delete,
+  data: { confirm: 'Are you sure?' }%>
+</p>
+
+<%= button_to "Proceed", edit_meal_path(@meal), method: :get%>

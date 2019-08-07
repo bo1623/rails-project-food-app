@@ -10,7 +10,9 @@ class MealsDishesController < ApplicationController
       end
     end
     redirect_to meal_path(@meal)
-    # redirect_back
+  end
+
+  def edit
   end
 
 
