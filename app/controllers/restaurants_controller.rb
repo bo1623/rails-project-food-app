@@ -6,6 +6,7 @@ class RestaurantsController < ApplicationController
     # if params[:location_id]
     #   @restaurants = Restaurant.where(location_id: params[:location_id])
     # else
+    raise params.inspect
     @restaurants = Restaurant.all
   end
 

@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  resources :cuisines
+  resources :cuisines do
+    resources :restaurants, only: [:show, :index]
+  end
   resources :dishes
   root 'welcome#home'
-  resources :locations
+  resources :locations do
+    resources :restaurants, only: [:show, :index]
+  end
   resources :restaurants
   resources :meals
   resources :users

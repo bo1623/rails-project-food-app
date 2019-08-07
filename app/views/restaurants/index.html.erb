@@ -1,4 +1,30 @@
+<div>
+  <p>Filter Restaurants:</p>
+  <%= form_tag restaurants_path, method: :get do %>
+    <%= select_tag :cuisine, options_from_collection_for_select(Cuisine.all, :id,:name), include_blank: true%>
+    <%= select_tag :location, options_from_collection_for_select(Location.all, :id,:name),include_blank: true%>
+    <%= submit_tag "Filter"%>
+  <%end%>
+</div>
 
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Cuisine</th>
+    <th>Location</th>
+    <th>Rating</th>
+  </tr>
+<%@restaurants.each do |restaurant|%>
+  <tr>
+    <td><%= link_to restaurant.name, restaurant_path(restaurant) %></td>
+    <td><%= restaurant.cuisine.name %></td>
+    <td><%= restaurant.location.name %></td>
+    <td><%= restaurant.restaurant_rating.nil? ? "Not Rated Yet" : restaurant.restaurant_rating %></td>
+  </tr>
+<%end%>
+</table>
+
+<br>
 
 <% if admin? %>
   <%= render '/layouts/admin/admin_features' %>
