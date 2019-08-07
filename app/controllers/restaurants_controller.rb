@@ -23,8 +23,10 @@ class RestaurantsController < ApplicationController
   end
 
   def create
+    @user = User.find(session[:user_id])
     @restaurant = Restaurant.new(restaurant_params)
-    byebug
+    @user.restaurant = @restaurant
+    @user.save #need to find out why the user's restaurant_id doesnt update
     if @restaurant.save
       redirect_to restaurant_path(@restaurant)
     else
