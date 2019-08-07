@@ -5,4 +5,9 @@ module ApplicationHelper
     @user.admin
   end
 
+  def restaurant_manager?
+    @user=User.find(session[:user_id])
+    @user.restaurant_manager
+  end
+
 end

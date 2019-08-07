@@ -11,3 +11,7 @@
   <li><%= dish.name %>: <%= dish.price%></li>
 <%end%>
 </ul>
+
+<% if restaurant_manager? %>
+  <%=render partial: "restaurant_manager/edit", locals: {restaurant: @restaurant} %>
+<%end%>

@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+  before_action :require_login
 
   def index #build in filter later on
     # if params[:location_id]
@@ -33,6 +34,5 @@ class RestaurantsController < ApplicationController
   def restaurant_params
     params.require(:restaurant).permit(:name, :cuisine,:location_id, :cuisine_id, :opening_time,:closing_time,:revenue,:rating, dish_ids:[], dishes_attributes: [:name,:price])
   end
-
 
 end
