@@ -3,11 +3,15 @@ class RestaurantsController < ApplicationController
   skip_before_action :require_manager, only: [:index, :show]
 
   def index #build in filter later on
-    # if params[:location_id]
-    #   @restaurants = Restaurant.where(location_id: params[:location_id])
-    # else
-    raise params.inspect
-    @restaurants = Restaurant.all
+    if !params[:cuisine_id].blank? && !params[:location_id].blank?
+      @restaurants=Restaurant.where(cuisine_id: params[:cuisine_id], location_id: params[:location_id])
+    elsif params[:cuisine_id] && params[:location_id].blank?
+       @restaurants=Restaurant.where(cuisine_id: params[:cuisine_id])
+    elsif params[:cuisine_id].blank? && params[:location_id]
+      @restaurants=Restaurant.where(location_id: params[:location_id])
+    else
+      @restaurants = Restaurant.all
+    end
   end
 
   def show

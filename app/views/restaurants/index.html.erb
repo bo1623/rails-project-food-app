@@ -1,11 +1,13 @@
 <div>
   <p>Filter Restaurants:</p>
   <%= form_tag restaurants_path, method: :get do %>
-    <%= select_tag :cuisine, options_from_collection_for_select(Cuisine.all, :id,:name), include_blank: true%>
-    <%= select_tag :location, options_from_collection_for_select(Location.all, :id,:name),include_blank: true%>
+    Cuisine: <%= select_tag :cuisine_id, options_from_collection_for_select(Cuisine.all, :id,:name), include_blank: true%><br>
+    Location: <%= select_tag :location_id, options_from_collection_for_select(Location.all, :id,:name),include_blank: true%><br>
     <%= submit_tag "Filter"%>
   <%end%>
 </div>
+
+<br>
 
 <table>
   <tr>
