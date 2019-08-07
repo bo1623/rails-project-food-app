@@ -1,6 +1,29 @@
 
 <p> You have purchased: </p>
 
-<%@dishes.each do |dish|%>
-  <%=dish.name %>: <%=dish.price%>
-<%end%>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @dish_names.each do |dish_name|%>
+      <tr>
+        <td><%=dish_name%></td>
+        <td><%=@dishes.where(name:dish_name)[0].price%></td>
+        <td><%=@dishes.where(name:dish_name).count%></td>
+        <td><%=@dishes.where(name:dish_name)[0].price*@dishes.where(name:dish_name).count%></td>
+      </tr>
+    <%end%>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>Total</th>
+      <td><%=@meal.total%></td>
+    </tr>
+  </tfoot>
+</table>
