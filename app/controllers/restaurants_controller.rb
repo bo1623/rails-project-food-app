@@ -23,8 +23,8 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    raise params.inspect
     @restaurant = Restaurant.new(restaurant_params)
+    byebug
     if @restaurant.save
       redirect_to restaurant_path(@restaurant)
     else

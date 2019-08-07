@@ -19,7 +19,6 @@
 <%end%>
 </table>
 
-<%byebug%>
 
 <% if restaurant_manager? && User.find(session[:user_id]).restaurant == @restaurant %>
   <%=render partial: "edit", locals: {restaurant: @restaurant} %>

@@ -8,11 +8,6 @@ class User < ApplicationRecord
 
 
   validates :username, presence: true
-  #
-  # def restaurant #customized restaurant method for users that are restaurant managers
-  #   if self.restaurant_manager
-  #     self.restaurants[0]
-  #   end
-  # end
+
 
 end

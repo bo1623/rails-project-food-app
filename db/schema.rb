@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2019_08_07_022913) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
+    t.integer "restaurant_id"
     t.boolean "admin", default: false
     t.boolean "restaurant_manager", default: false
     t.string "password_digest"
