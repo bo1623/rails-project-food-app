@@ -1,7 +1,7 @@
 
 <p>How would you rate your meal?</p>
 
-<%= form_tag meal_path(@meal), method: :patch do %>
+<%= form_tag user_meal_path(@user,@meal), method: :patch do %>
   <% @meal.dish_names.each do |dish_name|%>
     <%=dish_name%>: <%=number_field_tag "dish_ratings[]", nil, min: 0, max: 5%><br>
     <%= hidden_field_tag "names[]",dish_name %>

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :restaurants
   resources :meals
   resources :users do
-    resources :meals, only: [:show, :index, :new,:destroy]
+    resources :meals, only: [:show, :index, :new,:destroy,:edit,:update]
   end
   resources :meals_dishes
   get '/login' => 'sessions#new'

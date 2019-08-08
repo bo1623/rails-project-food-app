@@ -52,11 +52,11 @@ class MealsController < ApplicationController
   end
 
   # params hash from meals/edit.html.erb
-  # {"dish_ratings"=>["4", "3"],
+  # {"dish_ratings"=>["4", "5"],
   #   "names"=>["Green Tea Latte", "Flat White"],
   #   "commit"=>"Submit Ratings",
   #   "controller"=>"meals", "action"=>"update",
-  #   "id"=>"16"}
+  #   "user_id"=>"4", "id"=>"19"} permitted: false>}
 
   def destroy
     @restaurant=@meal.dishes[0].restaurant #just for the purposes of redirecting
