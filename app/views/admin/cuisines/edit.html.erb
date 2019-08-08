@@ -1,0 +1,7 @@
+
+<%= form_for @cuisine, url: admin_cuisine_path(@cuisine) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.submit%>
+<%end%>

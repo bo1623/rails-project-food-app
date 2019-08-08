@@ -22,7 +22,17 @@ class Admin::CuisinesController < ApplicationController
     @cuisine=Cuisine.find(params[:id])
   end
 
+  def update
+    @cuisine=Cuisine.find(params[:id])
+    @cuisine.update(cuisine_params)
+    redirect_to cuisine_path(@cuisine)
+  end
 
+  private
+
+  def cuisine_params
+    params.require(:cuisine).permit(:name)
+  end
 
 
 end
