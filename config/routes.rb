@@ -1,12 +1,8 @@
 Rails.application.routes.draw do
-  resources :cuisines do
-    resources :restaurants, only: [:show, :index]
-  end
+  resources :cuisines, only: [:index,:show]
   resources :dishes
   root 'welcome#home'
-  resources :locations do
-    resources :restaurants, only: [:show, :index]
-  end
+  resources :locations, only: [:index,:show]
   resources :restaurants
   resources :meals
   resources :users
@@ -14,5 +10,9 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
+  namespace :admin do
+    resources :cuisines, only: [:new,:create,:update,:edit]
+    resources :locations, only: [:new,:create,:update,:edit]
+  end
 
 end

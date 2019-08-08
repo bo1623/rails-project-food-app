@@ -22,3 +22,24 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+Notes
+- We want to create namespaced routes for only admins to access for the purposes of adding or editing locations and cuisines:
+
+get '/admin/cuisines/new', to: 'cuisines#new'
+get '/admin/cuisines/create', to: 'cuisines#create'
+get '/admin/locations/new', to: 'locations#new'
+get '/admin/locations/new', to: 'locations#new'
+
+scope '/admin', module: 'admin' do
+  resources :cuisines, only: [:new,:create,:update,:edit]
+  resources :locations, only: [:new,:create,:update,:edit]
+end
+
+This is equal to
+
+namespace :admin do
+  resources :cuisines, only: [:new,:create,:update,:edit]
+  resources :locations, only: [:new,:create,:update,:edit]
+end

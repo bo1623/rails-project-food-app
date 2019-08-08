@@ -4,5 +4,6 @@ class Cuisine < ApplicationRecord
   has_many :dishes, through: :restaurants
   has_many :meals, through: :restaurants
 
+  validates :name, presence: true
 
 end
