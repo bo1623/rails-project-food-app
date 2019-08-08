@@ -36,5 +36,11 @@ class Meal < ApplicationRecord
     end
   end
 
+  def update_restaurant_rating
+    dishes=self.dishes.uniq
+    restaurant=dishes[0].restaurant
+    restaurant.weighted_rating(dishes)
+  end
+
 
 end
