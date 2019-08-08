@@ -43,3 +43,8 @@ namespace :admin do
   resources :cuisines, only: [:new,:create,:update,:edit]
   resources :locations, only: [:new,:create,:update,:edit]
 end
+
+
+2. Refactoring code to include meal as a nested resource under user
+- now order form is currently in restaurant show page, we could just have the restaurant show it's menu and then click on another button to bring it to the user/1/meal/new page
+- user/1/meals is the index for meals associated with this user, showing meal history

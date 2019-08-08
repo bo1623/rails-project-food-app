@@ -1,0 +1,22 @@
+<h3>Pick your delights:</h3>
+
+<%= form_for @meal do |f| %>
+  <%=f.hidden_field :user_id %>
+  <h3>Menu</h3>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+  <%@dishes.each do |dish|%>
+    <tr>
+      <td><%=dish.name %></td>
+      <td><%=dish.price%></td>
+      <td><%=number_field_tag "dish_quantities[]",0,min:0,max:10%></td>
+      <%= hidden_field_tag "dish_ids[]", dish.id%>
+    </tr>
+  <%end%>
+  </table>
+  <%= f.submit "Place your order" %>
+<%end%>

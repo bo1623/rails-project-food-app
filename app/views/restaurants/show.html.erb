@@ -17,13 +17,15 @@
     <tr>
       <td><%=dish.name %></td>
       <td><%=dish.price%></td>
-      <td><%=select_tag "dish_quantities[]",options_for_select((0..10).step(1))%></td>
+      <td><%=number_field_tag "dish_quantities[]",options_for_select((0..10).step(1))%></td>
       <%= hidden_field_tag "dish_ids[]", dish.id%>
     </tr>
   <%end%>
   </table>
   <%= submit_tag "Place your order" %>
 <%end%>
+
+<%= button_to "Order from this restaurant", new_user_meal_path(@user), method: :get, params: {restaurant_id: @restaurant.id} %>
 
 
 <% if restaurant_manager? && User.find(session[:user_id]).restaurant == @restaurant %>

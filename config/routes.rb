@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :locations, only: [:index,:show]
   resources :restaurants
   resources :meals
-  resources :users
+  resources :users do
+    resources :meals, only: [:show, :index, :new]
+  end 
   resources :meals_dishes
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
