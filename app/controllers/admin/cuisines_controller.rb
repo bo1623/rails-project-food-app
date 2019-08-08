@@ -5,9 +5,17 @@ class Admin::CuisinesController < ApplicationController
   end
 
   def create
-    if Cuisine.exists?(name: params[:cuisine][:name])
-    @cuisine = Cuisine.find_or_create_by(name: params[:cuisine][:name])
-    redirect_to cuisines_path
+    if !Cuisine.exists?(name: params[:cuisine][:name])
+      @cuisine=Cuisine.new(name: params[:cuisine][:name])
+      if @cuisine.save
+        redirect_to cuisine_path(@cuisine)
+      else
+        render :new #if the cuisine was invalid
+      end
+    else
+      flash[:message]="Cuisine already exists"
+      redirect_to cuisines_path #if the cuisine with that name already exists
+    end
   end
 
   def edit

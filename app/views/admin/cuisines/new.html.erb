@@ -1,4 +1,10 @@
 
+<div>
+<% if @cuisine.errors.any? %>
+  <%= @cuisine.errors.full_messages[0] %>
+<%end%>
+</div>
+
 <%= form_for @cuisine, url: admin_cuisines_path do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
