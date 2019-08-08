@@ -1,5 +1,5 @@
 class MealsController < ApplicationController
-  before_action :current_meal
+  before_action :current_meal, :current_user
   skip_before_action :current_meal, only: [:new, :create]
 
   def show
@@ -14,18 +14,16 @@ class MealsController < ApplicationController
   end
 
   def create
-    raise params.inspect
     if params[:dish_quantities].uniq == ['0'] #condition where all dish_quantites are 0
       redirect_back(fallback_location: root_path) #redirects back to previous page (restaurant show page)
     else
-      @meal=Meal.new
-      @user.meals << @meal
+      @meal=Meal.create(meal_params)
       params[:dish_ids].zip(params[:dish_quantities]).each do |id,quantity|
         quantity.to_i.times do #creating quantity times of meals_dish instances
           MealsDish.create(meal_id: @meal.id, dish_id: id) #creating new instances of meals_dishes
         end
       end
-      redirect_to meal_path(@meal)
+      redirect_to user_meal_path(@user, @meal)
     end
   end
 
@@ -61,7 +59,7 @@ class MealsController < ApplicationController
   #   "id"=>"16"}
 
   def destroy
-    @restaurant=@meal.dishes[0].restaurant
+    @restaurant=@meal.dishes[0].restaurant #just for the purposes of redirecting
     @meal.destroy
 
     redirect_to restaurant_path(@restaurant)
@@ -71,6 +69,10 @@ class MealsController < ApplicationController
 
   def current_meal
     @meal=Meal.find(params[:id])
+  end
+
+  def meal_params
+    params.require(:meal).permit(:user_id)
   end
 
 

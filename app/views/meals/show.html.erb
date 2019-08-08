@@ -31,7 +31,7 @@
 <p>
   Changed Your Mind?
   <%= button_to "Cancel Order",
-  meal_path(@meal),
+  user_meal_path(@user,@meal),
   method: :delete,
   data: { confirm: 'Are you sure?' }%>
 </p>
