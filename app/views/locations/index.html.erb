@@ -1,0 +1,13 @@
+<div class="location_error"><%= flash[:message] %></div>
+
+<h3>Locations</h3>
+
+<ul>
+<%@locations.each do |location|%>
+  <li><%= link_to location.name, location_path(location) %></li>
+<%end%>
+</ul>
+
+<% if admin? %>
+  <%= render 'admin_locations' %>
+<%end%>

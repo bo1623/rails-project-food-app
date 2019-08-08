@@ -1,0 +1,12 @@
+
+<h3><%=@location.name%></h3>
+
+<ul>
+<%@restaurants.each do |restaurant|%>
+  <li><%=link_to restaurant.name, restaurant_path(restaurant)%></li>
+<%end%>
+</ul>
+
+<% if admin? %>
+  <%= render 'admin_locations' %>
+<%end%>

@@ -1,0 +1,13 @@
+
+<div>
+<% if @location.errors.any? %>
+  <%= @location.errors.full_messages[0] %>
+<%end%>
+</div>
+
+<%= form_for @location, url: admin_locations_path do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.submit%>
+<%end%>
