@@ -26,5 +26,15 @@ class Meal < ApplicationRecord
     dishes.map{|dish| dish.name}.uniq
   end
 
+  def update_dish_rating
+    dishes=self.dishes.uniq
+    dishes.each do |dish|
+      meals_dishes = MealsDish.where(dish_id: dish.id).where.not(meal_dish_rating: nil)
+      meals_dish_ratings= meals_dishes.map{|meals_dish| meals_dish.meal_dish_rating}
+      dish.dish_rating=(meals_dish_ratings.sum/meals_dish_ratings.size).to_i
+      dish.save
+    end
+  end
+
 
 end
