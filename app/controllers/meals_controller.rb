@@ -48,6 +48,7 @@ class MealsController < ApplicationController
         meals_dish.save
       end
     end
+    @meal.update_dish_rating
     redirect_to root_path
   end
 
