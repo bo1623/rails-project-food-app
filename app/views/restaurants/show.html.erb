@@ -5,25 +5,22 @@
 
 <div>Operating Hours: <%=@restaurant.opening_time.strftime("%I:%M %p")%> - <%=@restaurant.closing_time.strftime("%I:%M %p")%></div><br>
 
-<%= form_tag '/meals_dishes', method: :post do %>
-  <h3>Menu</h3>
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Quantity</th>
-    </tr>
-  <%@dishes.each do |dish|%>
-    <tr>
-      <td><%=dish.name %></td>
-      <td><%=dish.price%></td>
-      <td><%=number_field_tag "dish_quantities[]",options_for_select((0..10).step(1))%></td>
-      <%= hidden_field_tag "dish_ids[]", dish.id%>
-    </tr>
-  <%end%>
-  </table>
-  <%= submit_tag "Place your order" %>
+<h3>Menu</h3>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Rating</th>
+  </tr>
+<%@dishes.each do |dish|%>
+  <tr>
+    <td><%=dish.name %></td>
+    <td><%=dish.price%></td>
+    <td><%=dish.dish_rating.nil? ? "Not rated yet" : dish.dish_rating%></td>
+  </tr>
 <%end%>
+</table>
+
 
 <%= button_to "Order from this restaurant", new_user_meal_path(@user), method: :get, params: {restaurant_id: @restaurant.id} %>
 
