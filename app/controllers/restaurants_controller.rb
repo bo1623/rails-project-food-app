@@ -20,9 +20,14 @@ class RestaurantsController < ApplicationController
   end
 
   def new
-    @restaurant = Restaurant.new
-    5.times do
-      @restaurant.dishes.build
+    if @user.restaurant_id!=0
+      flash[:message]="You already have a restaurant under your account!"
+      redirect_to root_path
+    else
+      @restaurant = Restaurant.new
+      5.times do
+        @restaurant.dishes.build
+      end
     end
   end
 

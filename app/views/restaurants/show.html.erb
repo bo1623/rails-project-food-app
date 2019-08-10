@@ -25,6 +25,8 @@
   <%= button_to "Order from this restaurant", new_user_meal_path(@user), method: :get, params: {restaurant_id: @restaurant.id} %>
 <%end%>
 
+<br>
+
 <% if restaurant_manager? && User.find(session[:user_id]).restaurant == @restaurant %>
   <%=render partial: "edit", locals: {restaurant: @restaurant} %>
 <%end%>
