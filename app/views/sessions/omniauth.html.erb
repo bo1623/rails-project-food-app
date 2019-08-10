@@ -1,5 +1,9 @@
+<div><%= flash[:message] %></div>
+
+<div class=<%= "field_with_errors" if flash[:message] %>>
 <p> Please enter your food app password: </p>
 <%= form_tag '/login', method: :post do %>
   Password: <%= text_field_tag :password %>
   <%= submit_tag "Submit" %>
 <%end%>
+</div>

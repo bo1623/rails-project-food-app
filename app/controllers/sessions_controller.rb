@@ -14,9 +14,6 @@ class SessionsController < ApplicationController
     else
       normal_login
     end
-
-    session[:user_id] = @user.id
-    redirect_to root_path
   end
 
   def destroy
@@ -32,30 +29,34 @@ class SessionsController < ApplicationController
   end
 
   def omniauth_login
-    if User.exists?(uid: session[:omniauth]['uid'])
+    if User.exists?(uid: session[:omniauth]['uid']) #if we have a user that has logged in via github before
       @user = User.find_by(uid: session[:omniauth]['uid'])
       if @user.authenticate(params[:password])
+        session[:user_id] = @user.id
         redirect_to restaurants_path
       else
+        flash[:message]="Invalid Password"
         render 'sessions/omniauth' #render if invalid password
       end
-    else
+    else #if new user logging in via github, we need to create a new user
       @user = User.new(uid: session[:omniauth]['uid']) do |u|
         u.username = session[:omniauth]['info']['nickname']
         u.password = params[:password]
       end
       @user.save
+      session[:user_id] = @user.id
+      redirect_to restaurants_path
     end
   end
 
-  def normal_login
+  def normal_login #if the user chooses to login via the normal way
     @user = User.find_by(username: params[:username])
     if !@user.nil? &&  User.exists?(@user.id) && @user.authenticate(params[:password])
       session[:user_id]=@user.id
       if @user.restaurant_manager
-        redirect_to new_restaurant_path
+        redirect_to new_restaurant_path and return
       else
-        redirect_to restaurants_path
+        redirect_to restaurants_path and return
       end
     else
       render :new #rendering the log in page again after unsuccessful attempt
