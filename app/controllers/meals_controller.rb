@@ -49,6 +49,7 @@ class MealsController < ApplicationController
       end
     end
     @meal.update_dish_rating
+    @meal.update_restaurant_rating
     redirect_to root_path
   end
 

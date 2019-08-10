@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       if @user.restaurant_manager
         redirect_to new_restaurant_path
       else
-        redirect_to root_path
+        redirect_to restaurants_path
       end
     else
       render :new

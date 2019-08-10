@@ -20,9 +20,11 @@
 </table>
 <br>
 
+<%= link_to "View Restaurants", restaurants_path %><br>
+
 <% if session[:user_id] %>
-  <a class="navbar-brand" href="<%= logout_path%>">Log Out</a><br>
+  <a  href="<%= logout_path%>">Log Out</a><br>
 <%else%>
-  <a class="navbar-brand" href="<%= login_path%>">Log In</a><br>
-  <a class="navbar-brand" href="<%= new_user_path%>">Sign Up</a><br>
+  <a  href="<%= login_path%>">Log In</a><br>
+  <a  href="<%= new_user_path%>">Sign Up</a><br>
 <%end%>

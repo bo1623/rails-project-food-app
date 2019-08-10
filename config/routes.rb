@@ -17,4 +17,6 @@ Rails.application.routes.draw do
     resources :locations, only: [:new,:create,:update,:edit]
   end
 
+  get '/auth/github/callback', to: 'sessions#omniauth'
+
 end
