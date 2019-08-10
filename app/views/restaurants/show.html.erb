@@ -21,9 +21,9 @@
 <%end%>
 </table>
 
-
-<%= button_to "Order from this restaurant", new_user_meal_path(@user), method: :get, params: {restaurant_id: @restaurant.id} %>
-
+<% if normal_user? %> <%#only allows normal customers (non admin and non restaurant manager) to make orders%>
+  <%= button_to "Order from this restaurant", new_user_meal_path(@user), method: :get, params: {restaurant_id: @restaurant.id} %>
+<%end%>
 
 <% if restaurant_manager? && User.find(session[:user_id]).restaurant == @restaurant %>
   <%=render partial: "edit", locals: {restaurant: @restaurant} %>
