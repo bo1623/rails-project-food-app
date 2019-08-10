@@ -19,7 +19,7 @@
 <%@restaurants.each do |restaurant|%>
   <tr>
     <td><%= link_to restaurant.name, restaurant_path(restaurant) %></td>
-    <td><%= restaurant.cuisine.name %></td>
+    <td><%= link_to restaurant.cuisine.name, cuisine_path(restaurant.cuisine) %></td>
     <td><%= restaurant.location.name %></td>
     <td><%= restaurant.restaurant_rating.nil? ? "Not Rated Yet" : restaurant.restaurant_rating %></td>
   </tr>

@@ -1,7 +1,7 @@
 
 <h1> Welcome! </h1>
 
-<%= flash[:message] %> 
+<%= flash[:message] %>
 
 <h3> Top Picks </h3>
 <table>
@@ -14,7 +14,7 @@
 <% @restaurants.each do |restaurant| %>
   <tr>
     <td><%= link_to restaurant.name, restaurant_path(restaurant) %></td>
-    <td><%= restaurant.cuisine.name %></td>
+    <td><%= link_to restaurant.cuisine.name, cuisine_path(restaurant.cuisine) %></td>
     <td><%= restaurant.location.name %></td>
     <td><%= restaurant.restaurant_rating.nil? ? "Not Rated Yet" : restaurant.restaurant_rating %></td>
   </tr>
@@ -22,7 +22,8 @@
 </table>
 <br>
 
-<%= link_to "View Restaurants", restaurants_path %><br>
+<%= link_to "View All Restaurants", restaurants_path %><br>
+<%= link_to "View All Cuisines", cuisines_path %><br>
 
 <% if session[:user_id] %>
   <a  href="<%= logout_path%>">Log Out</a><br>

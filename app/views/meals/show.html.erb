@@ -28,6 +28,8 @@
   </tfoot>
 </table>
 
+<br>
+
 <p>
   Changed Your Mind?
   <%= button_to "Cancel Order",
@@ -35,5 +37,6 @@
   method: :delete,
   data: { confirm: 'Are you sure?' }%>
 </p>
+
 
 <%= button_to "Proceed", edit_user_meal_path(@user,@meal), method: :get%>
