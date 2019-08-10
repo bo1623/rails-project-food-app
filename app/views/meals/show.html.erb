@@ -30,13 +30,15 @@
 
 <br>
 
-<p>
+<div style="float:left">
   Changed Your Mind?
+</div>
+<div class="cancel-button">
   <%= button_to "Cancel Order",
   user_meal_path(@user,@meal),
   method: :delete,
   data: { confirm: 'Are you sure?' }%>
-</p>
+</div>
 
 
 <%= button_to "Proceed", edit_user_meal_path(@user,@meal), method: :get%>
