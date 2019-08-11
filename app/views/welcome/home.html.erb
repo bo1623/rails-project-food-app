@@ -1,5 +1,8 @@
-
-<h1> Welcome to The Food App! </h1>
+<% if session[:user_id]%>
+  <h1> Hello <%=@user.username%>, welcome to The Food App! </h1>
+<% else %>
+  <h1> Welcome to The Food App! </h1>
+<%end%>
 
 <%= flash[:message] %>
 

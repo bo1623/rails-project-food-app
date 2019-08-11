@@ -1,50 +1,11 @@
-# README
+# The Food App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app serves as a pseudo food delivery app, minus the payment portion. Users are able to identify as customers or restaurant managers or app admins via checkboxes on the sign up page.
 
-Things you may want to cover:
+Restaurant managers have the ability to create new restaurants and edit their restaurant details and menu, including dishes offered and their respective prices.
 
-* Ruby version
+App admins control the cuisines and locations that are available on the app to both users and restaurant managers.
 
-* System dependencies
+Normal users or customers can filter the restaurants they desire by either cuisine or location. They can then place orders for their meals via the restaurant's page, which then directs them to a page to review their order (and choose whether to proceed with or cancel their order). After their orders are placed, the user is given the option to rate each dish they have ordered, the ratings then feed through to the dishes' average ratings and restaurant's overall rating, allowing both customers and restaurant managers to identify top picks in terms of restaurants and their respective dishes. 
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Notes
-- We want to create namespaced routes for only admins to access for the purposes of adding or editing locations and cuisines:
-
-get '/admin/cuisines/new', to: 'cuisines#new'
-get '/admin/cuisines/create', to: 'cuisines#create'
-get '/admin/locations/new', to: 'locations#new'
-get '/admin/locations/new', to: 'locations#new'
-
-scope '/admin', module: 'admin' do
-  resources :cuisines, only: [:new,:create,:update,:edit]
-  resources :locations, only: [:new,:create,:update,:edit]
-end
-
-This is equal to
-
-namespace :admin do
-  resources :cuisines, only: [:new,:create,:update,:edit]
-  resources :locations, only: [:new,:create,:update,:edit]
-end
-
-
-2. Refactoring code to include meal as a nested resource under user
-- now order form is currently in restaurant show page, we could just have the restaurant show it's menu and then click on another button to bring it to the user/1/meal/new page
-- user/1/meals is the index for meals associated with this user, showing meal history
+The app also enables log in or sign up via Github. However, an app-specific password will have to be entered each time the user logs in.
