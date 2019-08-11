@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
       @user = User.find_by(uid: session[:omniauth]['uid'])
       if @user.authenticate(params[:password])
         session[:user_id] = @user.id
-        redirect_to restaurants_path
+        redirect_to root_path
       else
         flash[:message]="Invalid Password"
         render 'sessions/omniauth' #render if invalid password
@@ -45,7 +45,7 @@ class SessionsController < ApplicationController
       end
       @user.save
       session[:user_id] = @user.id
-      redirect_to restaurants_path
+      redirect_to root_path
     end
   end
 
@@ -54,9 +54,9 @@ class SessionsController < ApplicationController
     if !@user.nil? &&  User.exists?(@user.id) && @user.authenticate(params[:password])
       session[:user_id]=@user.id
       if @user.restaurant_manager
-        redirect_to new_restaurant_path and return
+        redirect_to restaurant_path(@user.restaurant) and return
       else
-        redirect_to restaurants_path and return
+        redirect_to root_path and return
       end
     else
       render :new #rendering the log in page again after unsuccessful attempt
