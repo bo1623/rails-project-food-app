@@ -44,6 +44,8 @@ class MealsController < ApplicationController
   def update
     params[:names].zip(params[:dish_ratings]).each do |name, rating|
       meals_dishes=MealsDish.where(meal_id: @meal.id, dish_id: Dish.find_by(name: name, restaurant_id: params[:restaurant_id]).id)
+      #needed to find the correct dish_id based on both name and restaurant_id in case there are dishes with duplicate
+      #names across restaurants
       meals_dishes.each do |meals_dish|
         meals_dish.meal_dish_rating=rating
         meals_dish.save
