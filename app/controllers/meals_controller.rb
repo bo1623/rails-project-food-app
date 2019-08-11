@@ -14,6 +14,7 @@ class MealsController < ApplicationController
   end
 
   def create
+    session[:restaurant_id]=params[:restaurant_id]
     if params[:dish_quantities].uniq == ['0'] #condition where all dish_quantites are 0
       redirect_back(fallback_location: root_path) #redirects back to previous page (restaurant show page)
     else
@@ -42,7 +43,7 @@ class MealsController < ApplicationController
 
   def update
     params[:names].zip(params[:dish_ratings]).each do |name, rating|
-      meals_dishes=MealsDish.where(meal_id: @meal.id, dish_id: Dish.find_by(name: name).id)
+      meals_dishes=MealsDish.where(meal_id: @meal.id, dish_id: Dish.find_by(name: name, restaurant_id: params[:restaurant_id]).id)
       meals_dishes.each do |meals_dish|
         meals_dish.meal_dish_rating=rating
         meals_dish.save
@@ -50,6 +51,7 @@ class MealsController < ApplicationController
     end
     @meal.update_dish_rating
     @meal.update_restaurant_rating
+    session.delete :restaurant_id #delete the restaurant_id since the cycle of the order has been completed
     redirect_to root_path
   end
 

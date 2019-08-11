@@ -2,6 +2,7 @@
 
 <%= form_for @meal do |f| %>
   <%=f.hidden_field :user_id %>
+  <%=hidden_field_tag :restaurant_id, @restaurant.id%>
   <h3>Menu</h3>
   <table>
     <tr>

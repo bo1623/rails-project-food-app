@@ -6,5 +6,6 @@
     <%=dish_name%>: <%=number_field_tag "dish_ratings[]", nil, min: 0, max: 5%><br>
     <%= hidden_field_tag "names[]",dish_name %>
   <%end%>
+  <%= hidden_field_tag :restaurant_id, session[:restaurant_id]%>
   <%= submit_tag "Submit Ratings" %>
 <%end%>
