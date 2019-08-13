@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_022603) do
   create_table "dishes", force: :cascade do |t|
     t.string "name"
     t.integer "price"
-    t.integer "dish_rating"
+    t.integer "dish_rating" #if i wanted to change the data type to float, likely the whole data column disappears as well
     t.integer "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_022603) do
 
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id"
+    t.integer "user_id" #duplicate in reference, the users table already has restaurant_id, including user_id in here risks single source of truth
     t.integer "location_id"
     t.datetime "opening_time"
     t.datetime "closing_time"

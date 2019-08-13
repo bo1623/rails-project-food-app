@@ -6,6 +6,7 @@ class Meal < ApplicationRecord
   def total
     dishes=self.dishes
     dishes.map{|dish| dish.price}.sum
+    #can use reduce method over here
   end
 
   def dish_price(dish_name)
